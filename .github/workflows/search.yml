@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       query:
-        description: 'Search query'
+        description: 'Kata kunci pencarian'
         required: true
-        default: 'Axion Neuralis'
+        default: 'Axion AI'
+      max_results:
+        description: 'Jumlah hasil maksimal (1-10)'
+        required: false
+        default: '5'
 
 jobs:
   search:
@@ -20,6 +24,5 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Run Search Script
-        run: |
-          node search.js "${{ github.event.inputs.query }}"
+      - name: Run Search
+        run: node search.js "${{ github.event.inputs.query }}"
